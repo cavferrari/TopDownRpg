@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -16,7 +14,6 @@ public class PlayerController : MonoBehaviour
         animator = this.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movementInput.x = Input.GetAxisRaw("Horizontal");
@@ -28,6 +25,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        playerRigidbody.MovePosition(playerRigidbody.position + (movementInput * speed * Time.fixedDeltaTime));
+        playerRigidbody.MovePosition(playerRigidbody.position + (movementInput.normalized * speed * Time.fixedDeltaTime));
     }
 }
