@@ -10,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     private InventorySlot[] playerInventorySlots;
     private InventorySlot[] shopInventorySlots;
     private PlayerController playerController;
+    private PlayerCustomize playerCustomize;
 
     void Awake()
     {
@@ -21,6 +22,7 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        playerCustomize = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCustomize>();
         EnablePlayerSlotsSellButton(false);
     }
 
@@ -104,10 +106,20 @@ public class InventoryUI : MonoBehaviour
     public void UpdateEquipButton()
     {
         bool equiped;
+        bool hasEquiped = false;
         for (int i = 0; i < playerInventorySlots.Length; i++)
         {
-            equiped = (playerInventorySlots[i].GetItem() != null) ? !playerInventorySlots[i].GetItem().equiped : false;
-            playerInventorySlots[i].EnableEquipButton(equiped);
+            equiped = (playerInventorySlots[i].GetItem() != null) ? playerInventorySlots[i].GetItem().equiped : false;
+            if (equiped)
+            {
+                playerCustomize.UpdateEquipedSkin(playerInventorySlots[i].GetItem().name);
+                hasEquiped = true;
+            }
+            playerInventorySlots[i].EnableEquipText(equiped);
+        }
+        if (!hasEquiped)
+        {
+            playerCustomize.UpdateEquipedSkin("Main");
         }
     }
 }

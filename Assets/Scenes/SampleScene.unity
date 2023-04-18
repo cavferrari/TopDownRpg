@@ -33791,7 +33791,7 @@ GameObject:
   - component: {fileID: 1689522110}
   - component: {fileID: 1689522109}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: InventoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33812,6 +33812,7 @@ MonoBehaviour:
   space: 4
   playerItems:
   - {fileID: 11400000, guid: 610940c1b1ef59845a38dfebdb5a1ef5, type: 2}
+  - {fileID: 11400000, guid: d469ad2809e24a649b7fb756577ac084, type: 2}
   shopItems:
   - {fileID: 11400000, guid: d469ad2809e24a649b7fb756577ac084, type: 2}
 --- !u!4 &1689522110
@@ -34042,6 +34043,7 @@ GameObject:
   - component: {fileID: 1781883808}
   - component: {fileID: 1781883809}
   - component: {fileID: 1781883807}
+  - component: {fileID: 1781883810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -34187,6 +34189,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.2}
   m_Size: {x: 0.8, y: 1.4}
   m_Direction: 0
+--- !u!114 &1781883810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781883803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70d93b3288b2434384420fedd876028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins:
+  - name: Main
+    sprites:
+    - {fileID: 21300000, guid: bd2b66acf7720ad468e2ea5884ed6b70, type: 3}
+  - name: HuntersHat
+    sprites:
+    - {fileID: 21300000, guid: 0f39a9205e4394ee1b6ba8269428d176, type: 3}
+  - name: HornedHelmet
+    sprites:
+    - {fileID: 21300000, guid: c6cf0c18076eae24088bbbcabb06ab2e, type: 3}
 --- !u!1 &1896192387
 GameObject:
   m_ObjectHideFlags: 0

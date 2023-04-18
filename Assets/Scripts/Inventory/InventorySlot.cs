@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class InventorySlot : MonoBehaviour
     public Button itemButton;
     public Button equipButton;
     public Button sellButton;
+    public TextMeshProUGUI equiped;
 
     private Item item;
 
@@ -54,6 +56,14 @@ public class InventorySlot : MonoBehaviour
         if (type == Type.Player && item != null)
         {
             equipButton.interactable = enabled;
+        }
+    }
+
+    public void EnableEquipText(bool enabled)
+    {
+        if (type == Type.Player && item != null)
+        {
+            equiped.enabled = enabled;
         }
     }
 

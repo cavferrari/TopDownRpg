@@ -78,14 +78,30 @@ public class Inventory : MonoBehaviour
 
     public void Equip(Item item)
     {
+        Item currentEquipedItem = null;
         for (int i = 0; i < playerItems.Count; i++)
         {
             if (playerItems[i].equiped)
             {
-                playerItems[i].equiped = false;
+                currentEquipedItem = playerItems[i];
             }
         }
-        item.equiped = true;
+        if (currentEquipedItem != null)
+        {
+            if (currentEquipedItem.name.Equals(item.name))
+            {
+                currentEquipedItem.equiped = false;
+            }
+            else
+            {
+                currentEquipedItem.equiped = false;
+                item.equiped = true;
+            }
+        }
+        else
+        {
+            item.equiped = true;
+        }
         if (OnItemChangedCallback != null)
         {
             OnItemChangedCallback.Invoke(Action.Equiping);

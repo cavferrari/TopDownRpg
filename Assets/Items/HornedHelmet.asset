@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d9f8c25edd3f346b5140d5b6a79b8d, type: 3}
   m_Name: HornedHelmet
   m_EditorClassIdentifier: 
-  name: Horned Helmet
+  name: HornedHelmet
   icon: {fileID: 21300000, guid: 25668d6da22431240bd15957e8218af6, type: 3}
-  isDefault: 0
+  equiped: 0
