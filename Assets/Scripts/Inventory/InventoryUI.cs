@@ -3,20 +3,28 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
-    public GameObject inventoryUI;
+    public GameObject playerInventoryUI;
+    public GameObject shopInventoryUI;
 
     private InventorySlot[] inventorySlots;
+    private PlayerController playerController;
 
     void Start()
     {
         inventorySlots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        Inventory.instance.OnItemChangedCallback += UpdateUI;
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            playerInventoryUI.SetActive(!playerInventoryUI.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && playerController.IsPlayerContactShopKeeper())
+        {
+            shopInventoryUI.SetActive(!shopInventoryUI.activeSelf);
         }
     }
 

@@ -9,16 +9,6 @@ public class InventorySlot : MonoBehaviour
 
     private Item item;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void AddItem(Item newItem)
     {
         item = newItem;
@@ -46,5 +36,20 @@ public class InventorySlot : MonoBehaviour
     public void OnRemoveButton()
     {
         Inventory.instance.Remove(item);
+    }
+
+    public void OnEquipButton()
+    {
+        Debug.Log("Equiped");
+    }
+
+    public void OnBuyButton()
+    {
+        Debug.Log("Buying");
+    }
+
+    public void OnSellButton()
+    {
+        Debug.Log("Selling");
     }
 }

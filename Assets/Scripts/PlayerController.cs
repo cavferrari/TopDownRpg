@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private Animator animator;
     private Vector2 movementInput;
+    private bool isContactShopKeeper = false;
 
     void Start()
     {
@@ -26,5 +27,26 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         playerRigidbody.MovePosition(playerRigidbody.position + (movementInput.normalized * speed * Time.fixedDeltaTime));
+    }
+
+    public bool IsPlayerContactShopKeeper()
+    {
+        return isContactShopKeeper;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag.Equals("ShopKeeper"))
+        {
+            isContactShopKeeper = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag.Equals("ShopKeeper"))
+        {
+            isContactShopKeeper = false;
+        }
     }
 }
