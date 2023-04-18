@@ -34205,6 +34205,18 @@ MonoBehaviour:
   - name: Main
     sprites:
     - {fileID: 21300000, guid: bd2b66acf7720ad468e2ea5884ed6b70, type: 3}
+    - {fileID: 21300000, guid: c81cc16448982294b93588f5b36dafca, type: 3}
+    - {fileID: 21300000, guid: ee549bba7af91e24f875d491b8061c2c, type: 3}
+    - {fileID: 21300000, guid: 0c7abe560c6676143b88c7f425d8d61e, type: 3}
+    - {fileID: 21300000, guid: ac23c2ba20225434d8ead6a2e51966a6, type: 3}
+    - {fileID: 21300000, guid: 8b5cbee700c153442b29e41302f06ebc, type: 3}
+    - {fileID: 21300000, guid: ef86e026dcf716c448e9180d4b10fc87, type: 3}
+    - {fileID: 21300000, guid: 9ed066c4dca07184385af2dcf054bf8b, type: 3}
+    - {fileID: 21300000, guid: c96af8d835f506849b555aff246c63d1, type: 3}
+    - {fileID: 21300000, guid: 9370ff49e9a3dd841a43167de034ddcd, type: 3}
+    - {fileID: 21300000, guid: 659eaad304ced9a418d4f9dbe6b3be3e, type: 3}
+    - {fileID: 21300000, guid: ce253ca39f71adb4d92c16198d53c822, type: 3}
+    - {fileID: 21300000, guid: 5a7fb6dd42d1e954b8a73dc2147a77b7, type: 3}
   - name: HuntersHat
     sprites:
     - {fileID: 21300000, guid: 0f39a9205e4394ee1b6ba8269428d176, type: 3}
