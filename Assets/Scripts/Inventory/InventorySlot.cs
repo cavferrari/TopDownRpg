@@ -13,13 +13,18 @@ public class InventorySlot : MonoBehaviour
 
     private Item item;
 
+    public Item GetItem()
+    {
+        return item;
+    }
+
     public void AddItem(Item newItem)
     {
         item = newItem;
         icon.sprite = item.icon;
         icon.enabled = true;
         itemButton.interactable = true;
-        if (type == Type.Player)
+        if (type == Type.Player && !item.equiped)
         {
             equipButton.interactable = true;
         }
@@ -44,22 +49,17 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    public void Use()
+    public void EnableEquipButton(bool enabled)
     {
-        if (item != null)
+        if (type == Type.Player && item != null)
         {
-            item.Use();
+            equipButton.interactable = enabled;
         }
     }
 
-    /* public void OnRemoveButton()
-    {
-        Inventory.instance.PlayerRemove(item);
-    } */
-
     public void OnEquipButton()
     {
-        Debug.Log("Equiped");
+        Inventory.instance.Equip(item);
     }
 
     public void OnBuyButton()

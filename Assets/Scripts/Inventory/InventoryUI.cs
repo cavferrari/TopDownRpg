@@ -32,8 +32,15 @@ public class InventoryUI : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return) && playerController.IsPlayerContactShopKeeper())
         {
-            playerInventoryUI.SetActive(!playerInventoryUI.activeSelf);
             shopInventoryUI.SetActive(!shopInventoryUI.activeSelf);
+            if (!playerInventoryUI.activeSelf && shopInventoryUI.activeSelf)
+            {
+                playerInventoryUI.SetActive(true);
+            }
+            else if (!shopInventoryUI.activeSelf)
+            {
+                playerInventoryUI.SetActive(false);
+            }
             EnablePlayerSlotsSellButton(shopInventoryUI.activeSelf);
 
         }
@@ -45,35 +52,44 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void UpdateUI()
+    public void UpdateUI(Inventory.Action action)
     {
-        for (int i = 0; i < playerInventorySlots.Length; i++)
+        if (action == Inventory.Action.Buying)
         {
-            if (i < Inventory.instance.playerItems.Count)
+            for (int i = 0; i < playerInventorySlots.Length; i++)
             {
-                playerInventorySlots[i].AddItem(Inventory.instance.playerItems[i]);
-                playerInventorySlots[i].EnableSellButton(true);
+                if (i < Inventory.instance.playerItems.Count)
+                {
+                    playerInventorySlots[i].AddItem(Inventory.instance.playerItems[i]);
+                    playerInventorySlots[i].EnableSellButton(true);
+                    playerInventorySlots[i].EnableEquipButton(true);
+                }
+                else
+                {
+                    /* 
+                    * Needs to call the sell button disable before cleaning the slot becouse
+                    * the enable function verify if the item is null before disabling the button. 
+                    */
+                    playerInventorySlots[i].EnableSellButton(false);
+                    playerInventorySlots[i].EnableEquipButton(false);
+                    playerInventorySlots[i].ClearSlot();
+                }
             }
-            else
+            for (int i = 0; i < shopInventorySlots.Length; i++)
             {
-                /* 
-                * Needs to call the sell button disable before cleaning the slot becouse
-                * the enable function verify if the item is null before disabling the button. 
-                */
-                playerInventorySlots[i].EnableSellButton(false);
-                playerInventorySlots[i].ClearSlot();
+                if (i < Inventory.instance.shopItems.Count)
+                {
+                    shopInventorySlots[i].AddItem(Inventory.instance.shopItems[i]);
+                }
+                else
+                {
+                    shopInventorySlots[i].ClearSlot();
+                }
             }
         }
-        for (int i = 0; i < shopInventorySlots.Length; i++)
+        else
         {
-            if (i < Inventory.instance.shopItems.Count)
-            {
-                shopInventorySlots[i].AddItem(Inventory.instance.shopItems[i]);
-            }
-            else
-            {
-                shopInventorySlots[i].ClearSlot();
-            }
+            UpdateEquipButton();
         }
     }
 
@@ -82,6 +98,16 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < playerInventorySlots.Length; i++)
         {
             playerInventorySlots[i].EnableSellButton(enabled);
+        }
+    }
+
+    public void UpdateEquipButton()
+    {
+        bool equiped;
+        for (int i = 0; i < playerInventorySlots.Length; i++)
+        {
+            equiped = (playerInventorySlots[i].GetItem() != null) ? !playerInventorySlots[i].GetItem().equiped : false;
+            playerInventorySlots[i].EnableEquipButton(equiped);
         }
     }
 }

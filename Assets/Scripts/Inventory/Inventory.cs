@@ -5,6 +5,8 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
+    public enum Action { Buying, Equiping }
+
     public int space = 4;
     public List<Item> playerItems = new List<Item>();
     public List<Item> shopItems = new List<Item>();
@@ -20,7 +22,10 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        OnItemChangedCallback.Invoke();
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke(Action.Buying);
+        }
     }
 
     public bool PlayerAdd(Item item)
@@ -33,7 +38,7 @@ public class Inventory : MonoBehaviour
         playerItems.Add(item);
         if (OnItemChangedCallback != null)
         {
-            OnItemChangedCallback.Invoke();
+            OnItemChangedCallback.Invoke(Action.Buying);
         }
         return true;
     }
@@ -48,7 +53,7 @@ public class Inventory : MonoBehaviour
         shopItems.Add(item);
         if (OnItemChangedCallback != null)
         {
-            OnItemChangedCallback.Invoke();
+            OnItemChangedCallback.Invoke(Action.Buying);
         }
         return true;
     }
@@ -58,7 +63,7 @@ public class Inventory : MonoBehaviour
         playerItems.Remove(item);
         if (OnItemChangedCallback != null)
         {
-            OnItemChangedCallback.Invoke();
+            OnItemChangedCallback.Invoke(Action.Buying);
         }
     }
 
@@ -67,10 +72,26 @@ public class Inventory : MonoBehaviour
         shopItems.Remove(item);
         if (OnItemChangedCallback != null)
         {
-            OnItemChangedCallback.Invoke();
+            OnItemChangedCallback.Invoke(Action.Buying);
         }
     }
 
-    public delegate void OnItemChanged();
+    public void Equip(Item item)
+    {
+        for (int i = 0; i < playerItems.Count; i++)
+        {
+            if (playerItems[i].equiped)
+            {
+                playerItems[i].equiped = false;
+            }
+        }
+        item.equiped = true;
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke(Action.Equiping);
+        }
+    }
+
+    public delegate void OnItemChanged(Action action);
     public OnItemChanged OnItemChangedCallback;
 }
