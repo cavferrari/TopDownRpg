@@ -6,7 +6,8 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     public int space = 4;
-    public List<Item> items = new List<Item>();
+    public List<Item> playerItems = new List<Item>();
+    public List<Item> shopItems = new List<Item>();
 
     void Awake()
     {
@@ -17,28 +18,53 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
-    public bool Add(Item item)
+    void Start()
     {
-        if (!item.isDefault)
-        {
-            if (items.Count >= space)
-            {
-                Debug.Log("Inventory is full.");
-                return false;
-            }
-            items.Add(item);
-            if (OnItemChangedCallback != null)
-            {
-                OnItemChangedCallback.Invoke();
-            }
+        OnItemChangedCallback.Invoke();
+    }
 
+    public bool PlayerAdd(Item item)
+    {
+        if (playerItems.Count >= space)
+        {
+            Debug.Log("PLayer Inventory is full.");
+            return false;
+        }
+        playerItems.Add(item);
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke();
         }
         return true;
     }
 
-    public void Remove(Item item)
+    public bool ShopAdd(Item item)
     {
-        items.Remove(item);
+        if (shopItems.Count >= space)
+        {
+            Debug.Log("Shop Inventory is full.");
+            return false;
+        }
+        shopItems.Add(item);
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke();
+        }
+        return true;
+    }
+
+    public void PlayerRemove(Item item)
+    {
+        playerItems.Remove(item);
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke();
+        }
+    }
+
+    public void ShopRemove(Item item)
+    {
+        shopItems.Remove(item);
         if (OnItemChangedCallback != null)
         {
             OnItemChangedCallback.Invoke();

@@ -9,6 +9,7 @@ public class ShopKeeperController : MonoBehaviour
     private Animator animator;
     private Vector2 movementInput;
     private float timeElapsed = 0;
+    private bool isContactPlayer = false;
 
     void Start()
     {
@@ -18,23 +19,31 @@ public class ShopKeeperController : MonoBehaviour
 
     void Update()
     {
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed > updateInterval)
+        if (!isContactPlayer)
         {
-            switch (Random.Range(0, 3))
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > updateInterval)
             {
-                case 0:
-                    movementInput.x = Random.Range(-1, 2);
-                    break;
-                case 1:
-                    movementInput.y = Random.Range(-1, 2);
-                    break;
-                default:
-                    movementInput.x = 0f;
-                    movementInput.y = 0f;
-                    break;
+                switch (Random.Range(0, 3))
+                {
+                    case 0:
+                        movementInput.x = Random.Range(-1, 2);
+                        break;
+                    case 1:
+                        movementInput.y = Random.Range(-1, 2);
+                        break;
+                    default:
+                        movementInput.x = 0f;
+                        movementInput.y = 0f;
+                        break;
+                }
+                timeElapsed = 0f;
             }
-            timeElapsed = 0f;
+        }
+        else
+        {
+            movementInput.x = 0f;
+            movementInput.y = 0f;
         }
         animator.SetFloat("Horizontal", movementInput.x);
         animator.SetFloat("Vertical", movementInput.y);
@@ -44,5 +53,21 @@ public class ShopKeeperController : MonoBehaviour
     void FixedUpdate()
     {
         playerRigidbody.MovePosition(playerRigidbody.position + (movementInput.normalized * speed * Time.fixedDeltaTime));
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag.Equals("Player"))
+        {
+            isContactPlayer = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag.Equals("Player"))
+        {
+            isContactPlayer = false;
+        }
     }
 }

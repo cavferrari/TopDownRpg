@@ -3,9 +3,13 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
+    public enum Type { Player, Shop }
+
+    public Type type = Type.Player;
     public Image icon;
-    public Sprite clearSlotSprite;
-    public Button discardButton;
+    public Button itemButton;
+    public Button equipButton;
+    public Button sellButton;
 
     private Item item;
 
@@ -14,15 +18,30 @@ public class InventorySlot : MonoBehaviour
         item = newItem;
         icon.sprite = item.icon;
         icon.enabled = true;
-        discardButton.interactable = true;
+        itemButton.interactable = true;
+        if (type == Type.Player)
+        {
+            equipButton.interactable = true;
+        }
     }
 
     public void ClearSlot()
     {
         item = null;
-        icon.sprite = clearSlotSprite;
         icon.enabled = false;
-        discardButton.interactable = false;
+        itemButton.interactable = false;
+        if (type == Type.Player)
+        {
+            equipButton.interactable = false;
+        }
+    }
+
+    public void EnableSellButton(bool enabled)
+    {
+        if (type == Type.Player && item != null)
+        {
+            sellButton.interactable = enabled;
+        }
     }
 
     public void Use()
@@ -33,10 +52,10 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    public void OnRemoveButton()
+    /* public void OnRemoveButton()
     {
-        Inventory.instance.Remove(item);
-    }
+        Inventory.instance.PlayerRemove(item);
+    } */
 
     public void OnEquipButton()
     {
@@ -45,11 +64,13 @@ public class InventorySlot : MonoBehaviour
 
     public void OnBuyButton()
     {
-        Debug.Log("Buying");
+        Inventory.instance.PlayerAdd(item);
+        Inventory.instance.ShopRemove(item);
     }
 
     public void OnSellButton()
     {
-        Debug.Log("Selling");
+        Inventory.instance.ShopAdd(item);
+        Inventory.instance.PlayerRemove(item);
     }
 }

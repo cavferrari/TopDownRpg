@@ -2672,7 +2672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.89, y: -11.34, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9666,7 +9666,7 @@ GameObject:
   - component: {fileID: 1409727206}
   - component: {fileID: 1409727205}
   m_Layer: 5
-  m_Name: ItemsParent
+  m_Name: ShopItemsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33810,7 +33810,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   space: 4
-  items: []
+  playerItems:
+  - {fileID: 11400000, guid: 610940c1b1ef59845a38dfebdb5a1ef5, type: 2}
+  shopItems:
+  - {fileID: 11400000, guid: d469ad2809e24a649b7fb756577ac084, type: 2}
 --- !u!4 &1689522110
 Transform:
   m_ObjectHideFlags: 0
@@ -33838,7 +33841,7 @@ GameObject:
   - component: {fileID: 1692497923}
   - component: {fileID: 1692497922}
   m_Layer: 5
-  m_Name: ItemsParent
+  m_Name: PlayerItemsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34021,7 +34024,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887de1aedce75c649b1c88834aab5eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsParent: {fileID: 1692497921}
+  playerItemsParent: {fileID: 1692497921}
+  shopItemsParent: {fileID: 1409727204}
   playerInventoryUI: {fileID: 1233499008}
   shopInventoryUI: {fileID: 151877043}
 --- !u!1 &1781883803
