@@ -80,6 +80,7 @@ public class InventorySlot : MonoBehaviour
 
     public void OnSellButton()
     {
+        item.equiped = false;
         Inventory.instance.ShopAdd(item);
         Inventory.instance.PlayerRemove(item);
     }

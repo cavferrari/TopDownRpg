@@ -17,12 +17,12 @@ public class InventoryUI : MonoBehaviour
         Inventory.instance.OnItemChangedCallback += UpdateUI;
         playerInventorySlots = playerItemsParent.GetComponentsInChildren<InventorySlot>();
         shopInventorySlots = shopItemsParent.GetComponentsInChildren<InventorySlot>();
+        playerCustomize = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCustomize>();
     }
 
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        playerCustomize = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCustomize>();
         EnablePlayerSlotsSellButton(false);
     }
 
@@ -88,6 +88,7 @@ public class InventoryUI : MonoBehaviour
                     shopInventorySlots[i].ClearSlot();
                 }
             }
+            UpdateEquipButton();
         }
         else
         {
