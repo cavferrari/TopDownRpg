@@ -2648,7 +2648,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2691,9 +2691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cfc04313c56b54482ba136c17ae79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothing: 0.01
-  minBoundary: {x: -9.89, y: -11.34}
-  maxBoundary: {x: 9.87, y: 17.59}
+  smoothing: 0.02
+  minBoundary: {x: -7.79, y: -13.93}
+  maxBoundary: {x: 7.84, y: 26}
 --- !u!1001 &546358800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34396,7 +34396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -462.5, y: 265.1}
+  m_AnchoredPosition: {x: -420, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1892625844
@@ -34434,7 +34434,9 @@ MonoBehaviour:
     -Click the coin to sell item.
 
     -Click in
-    the item in the shop window to buy item.'
+    the item in the shop window to buy item.
+
+    -Esc to exit game.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
